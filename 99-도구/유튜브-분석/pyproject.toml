@@ -1,0 +1,8 @@
+[project]
+name = "youtube-analysis-tool"
+version = "0.1.0"
+description = "YouTube 영상 분석용 메타데이터·챕터·자동 자막 수집 도구"
+requires-python = ">=3.11"
+dependencies = [
+  "yt-dlp>=2025.1.1",
+]
