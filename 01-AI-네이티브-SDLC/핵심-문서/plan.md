@@ -32,34 +32,6 @@ lint, build, unit·integration·E2E/UI, 보안, 성능, 마이그레이션 검�
 
 코드베이스 조사나 구현 과정에서 계획이 바뀌면 변경 내용과 이유를 `plan.md`에 기록한다. 계획이 실제 변경과 달라진 채로 남지 않게 한다.
 
-## 권장 템플릿
-
-```md
-# Plan: [기능 이름]
-
-Related intent: [intent.md 경로]
-Related spec: [spec.md 경로]
-
-## Scope
-
-## Files and components to change
-- `[경로]`: 변경 이유
-
-## Implementation steps
-1.
-
-## Validation plan
-- [ ] Lint
-- [ ] Build
-- [ ] Unit / integration tests
-- [ ] E2E or UI verification
-- [ ] Security / migration checks
-
-## Rollout and rollback plan
-
-## Risks, alternatives, and open questions
-```
-
 ## 권장 지표
 
 - 계획 승인부터 병합까지 걸린 시간

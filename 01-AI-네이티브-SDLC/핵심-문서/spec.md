@@ -32,36 +32,6 @@ API, 데이터 모델, 이벤트, 권한, 외부 연동, 마이그레이션, 성
 
 관련 `intent.md`와 이슈를 링크하고, 핵심 요구사항이 intent의 어떤 결과를 만족하는지 확인한다. 구현 시작 후 요구사항이 바뀌면 이유와 승인 기록을 남긴다.
 
-## 권장 템플릿
-
-```md
-# Spec: [기능 이름]
-
-Related intent: [intent.md 경로]
-Status: draft
-
-## Goals
-
-## Non-goals
-
-## Functional requirements
-
-## User flows / UX
-
-## Technical design
-
-## Data and API changes
-
-## Security, privacy, and performance
-
-## Observability and operations
-
-## Acceptance criteria
-- [ ]
-
-## Open questions and decisions
-```
-
 ## 권장 지표
 
 - `intent.md` 승인부터 `spec.md` 승인까지 걸린 시간
