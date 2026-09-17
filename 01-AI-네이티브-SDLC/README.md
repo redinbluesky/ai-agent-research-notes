@@ -51,114 +51,24 @@ Intent (왜 만드는가)
 
 ## 4. 핵심 문서
 
-### 4.1 `CLAUDE.md` 또는 `AGENTS.md`
+AI Native SDLC의 각 단계는 다음 단계의 사람과 AI가 읽고 실행할 수 있는 문서·코드·검증 기록을 남긴다. 초기 단계의 문서 양식과 구현 이후의 공통 원칙은 아래 문서를 따른다.
 
-AI 에이전트가 따라야 할 팀 공통 규칙을 제공한다.
+| 단계 | 핵심 문서 또는 가이드 | 핵심 질문 | 대표 산출물 |
+|---|---|---|---|
+| 계획 | [intent.md — 의도서](핵심-문서/intent.md) | 왜 이 변경이 필요한가? | `intent.md` |
+| 설계 | [spec.md — 요구사항과 설계 명세](핵심-문서/spec.md) | 무엇을 만들고 무엇을 만들지 않는가? | `spec.md` |
+| 구현 준비 | [plan.md — 구현·검증 계획](핵심-문서/plan.md) | 어떤 파일을 어떤 순서로 바꾸고 어떻게 검증할까? | `plan.md` |
+| 구현 | [구현과 에이전트 가드레일](핵심-문서/구현과-에이전트-가드레일.md) | 에이전트가 어떤 규칙과 권한 안에서 구현하는가? | 코드, 테스트, 규칙·훅 적용 기록 |
+| 테스트 | [테스트와 지속적 evals](핵심-문서/테스트와-지속적-evals.md) | 제대로 동작한다는 증거가 있는가? | 테스트·빌드·lint·eval 결과 |
+| 리뷰·승인 | [PR 리뷰와 승인 게이트](핵심-문서/PR-리뷰와-승인-게이트.md) | 의도·명세·위험 수준에 맞는가? | PR, 리뷰 의견, 승인 기록 |
+| 배포 | [CI/CD와 안전한 배포](핵심-문서/CI-CD와-안전한-배포.md) | 안전하게 출시하고 되돌릴 수 있는가? | CI/CD 실행, 배포·롤백 기록 |
+| 운영 | [운영·관측성과 개선 루프](핵심-문서/운영-관측성과-개선-루프.md) | 운영 신호를 어떻게 개선 작업으로 연결하는가? | 지표, 인시던트, 후속 intent·eval |
 
-- 빌드·테스트·린트 명령
-- 코드 스타일과 디렉터리 구조
-- 아키텍처·의존성 규칙
-- 보안·배포 정책
-- `intent.md`, `spec.md`, `plan.md`을 참조하도록 하는 지침
-
-### 4.2 `intent.md` — 왜 만드는가
-
-복잡하거나 영향 범위가 큰 기능의 출발점이다. PM, PO, CS, 운영, 개발자 등 **문제를 발견한 누구나** AI와 대화하며 초안을 만들 수 있고, PO 또는 책임자가 검토·승인한다.
-
-```md
-# Intent: [기능 또는 문제 이름]
-
-Author: [이름]
-Status: draft
-
-## Problem
-- 현재 누가 어떤 문제를 겪는가?
-- 문제의 근거는 무엇인가?
-
-## Proposed outcome
-- 해결되면 무엇이 달라지는가?
-- 성공을 어떻게 판단하는가?
-
-## Affected users and systems
-- 사용자:
-- 영향을 받는 시스템:
-
-## Constraints
-- 반드시 지켜야 할 것:
-- 범위 밖인 것:
-
-## Open questions
-- 아직 결정하지 못한 사항:
-```
-
-### 4.3 `spec.md` — 무엇을 만드는가
-
-승인된 intent를 요구사항과 설계로 구체화한다. 일반적으로 AI가 초안을 만들고 PO가 승인한다.
-
-```md
-# Spec: [기능 이름]
-
-Related intent: `[intent.md 경로]`
-Status: draft
-
-## Goals
-## Non-goals
-## Functional requirements
-## User flows / UX
-## Technical design
-## Data and API changes
-## Security, privacy, and performance
-## Acceptance criteria
-- [ ]
-
-## Open questions
-```
-
-### 4.4 `plan.md` — 어떻게 구현·검증하는가
-
-개발 직전에 코드베이스 문맥을 바탕으로 작성한다. 어떤 파일을 어떤 순서로 변경하고, 어떤 방식으로 검증할지를 명확히 한다.
-
-```md
-# Plan: [기능 이름]
-
-Related intent: `[intent.md 경로]`
-Related spec: `[spec.md 경로]`
-
-## Scope
-## Files and components to change
-## Implementation steps
-1.
-
-## Validation plan
-- [ ] Lint
-- [ ] Build
-- [ ] Unit / integration tests
-- [ ] E2E or UI verification
-- [ ] Security / migration checks, if applicable
-
-## Rollback / rollout plan
-## Risks and open questions
-```
+개별 기능의 실제 변경 범위·검증·배포·롤백 계획은 해당 기능의 `intent.md`·`spec.md`·`plan.md`와 PR에 남긴다.
 
 ---
 
-## 5. 구현부터 운영까지의 실무 가이드
-
-계획·설계·구현 준비 이후 단계는 코드와 실행 기록이 주요 산출물이 된다. 아래 문서는 이 단계에서 반복 적용할 공통 원칙을 분리해 정리한다.
-
-| 단계 | 실무 가이드 | 주요 산출물 |
-|---|---|---|
-| 구현 | [구현과 에이전트 가드레일](구현과-에이전트-가드레일.md) | 코드, 테스트, 규칙·훅 적용 기록 |
-| 테스트 | [테스트와 지속적 evals](테스트와-지속적-evals.md) | 테스트·빌드·lint·eval 결과 |
-| 리뷰·승인 | [PR 리뷰와 승인 게이트](PR-리뷰와-승인-게이트.md) | PR, 리뷰 의견, 승인 기록 |
-| 배포 | [CI/CD와 안전한 배포](CI-CD와-안전한-배포.md) | CI/CD 실행, 배포·롤백 기록 |
-| 운영 | [운영·관측성과 개선 루프](운영-관측성과-개선-루프.md) | 지표, 인시던트 기록, 후속 intent·eval |
-
-원칙은 공통 가이드에서 확인하고, 개별 기능의 실제 변경 범위·검증·롤백 계획은 해당 기능의 `plan.md`와 PR에 남긴다.
-
----
-
-## 6. 단계적 도입 체크리스트
+## 5. 단계적 도입 체크리스트
 
 ### 1단계 — 의도 기록
 
@@ -188,7 +98,7 @@ Related spec: `[spec.md 경로]`
 
 ---
 
-## 7. 적용 범위와 주의사항
+## 6. 적용 범위와 주의사항
 
 - 모든 작업에 문서 절차를 강제하지 않는다. 오탈자나 명확한 단순 버그는 바로 수정하는 편이 낫다.
 - `intent.md`는 특정 도구가 자동 인식하는 예약 파일이나 업계 표준이 아니라, 의도를 관리하기 위한 권장 방식이다.
@@ -197,7 +107,7 @@ Related spec: `[spec.md 경로]`
 
 ---
 
-## 8. AI 시대의 품질 원칙
+## 7. AI 시대의 품질 원칙
 
 ### 구현 품질과 결정 품질을 구분한다
 
