@@ -10,6 +10,7 @@ AI를 계획·설계·구현·테스트·배포·운영 전 과정에 연결하�
 
 - [AI 네이티브 SDLC 개요](01-AI-네이티브-SDLC/README.md)
 - [Anthropic AI Native SDLC 사례](01-AI-네이티브-SDLC/사례/2026-09-05-Anthropic-AI-네이티브-SDLC.md)
+- [AI 시대의 코드 품질 사례](01-AI-네이티브-SDLC/사례/2026-09-08-Tech-Bridge-AI-시대-코드-품질.md)
 
 ### 02. 에이전트 친화적 웹
 
