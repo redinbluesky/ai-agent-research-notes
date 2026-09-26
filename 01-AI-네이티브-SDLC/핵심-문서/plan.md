@@ -9,6 +9,7 @@
 - 에이전트는 계획 모드에서 승인된 `intent.md`와 `spec.md`를 읽고, 변경할 파일·작업 순서·검증 방법을 포함한 구현 계획을 만들 수 있다.[8]
 - 엔지니어는 코드 생성 전에 계획을 검토·수정하고, 승인된 계획을 `plan.md`로 커밋한다.[8]
 - 구현이 계획에서 벗어나면 같은 변경에서 `plan.md`를 갱신하며, PR 리뷰는 최종 diff를 계획과 비교해 확인할 수 있다.[8]
+- 긴 에이전트 작업은 각 단계가 독립 세션에서도 실행되도록 관련 문서·변경 파일·인터페이스·검증 명령을 포함한 자기 완결적 Step으로 나눌 수 있다.[9][10]
 
 ## 실무 가이드
 
@@ -32,6 +33,19 @@ lint, build, unit·integration·E2E/UI, 보안, 성능, 마이그레이션 검�
 
 코드베이스 조사나 구현 과정에서 계획이 바뀌면 변경 내용과 이유를 `plan.md`에 기록한다. 계획이 실제 변경과 달라진 채로 남지 않게 한다.
 
+### 6. 독립 실행 가능한 Step으로 나눈다
+
+장시간 작업은 대화 기록 전체에 의존하지 않는 작은 Step으로 분해한다. 각 Step에는 다음을 포함한다.
+
+- 먼저 읽어야 할 설계 문서와 관련 코드 경로
+- 하나의 레이어 또는 모듈로 제한한 변경 범위
+- 함수·클래스·데이터 계약의 인터페이스
+- 실행 가능한 빌드·테스트·lint 명령과 통과 기준
+- 하지 말아야 할 변경과 그 이유
+- 이전 Step에서 이어받아야 할 결정과 산출물 요약
+
+각 Step은 새 에이전트 세션에서도 이해하고 검증할 수 있어야 한다. 전체 대화를 복사하기보다 필요한 결정과 산출물을 파일과 구조화된 상태로 전달한다.
+
 ## 권장 지표
 
 - 계획 승인부터 병합까지 걸린 시간
@@ -47,7 +61,13 @@ lint, build, unit·integration·E2E/UI, 보안, 성능, 마이그레이션 검�
 - [ ] 보안·데이터·성능·운영 위험을 검토했는가?
 - [ ] 배포·롤백 계획이 필요한 변경인가?
 - [ ] 구현 중 달라진 계획을 함께 갱신했는가?
+- [ ] 각 Step이 이전 대화 없이도 실행 가능한가?
+- [ ] 각 Step에 선행 자료·범위·검증 명령·금지 사항이 있는가?
 
 ## Sources
 
 [8] https://academy.claude.com/courses/ai-native-sdlc-playbook/plan-mode — Claude Code plan mode as the default starting point
+
+[9] https://www.youtube.com/watch?v=v6UAPUnOSxA — 실밸개발자, Spec-Driven Development
+
+[10] https://github.com/jha0313/harness_framework/blob/main/.claude/commands/harness.md — Harness Step 설계 원칙

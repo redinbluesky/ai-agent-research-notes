@@ -116,3 +116,4 @@ AI 또는 사람이 작성한 코드인지와 무관하게, 단위·통합·계�
 
 - [Anthropic AI 네이티브 SDLC 영상 정리](사례/2026-09-05-Anthropic-AI-네이티브-SDLC.md)
 - [Tech Bridge — AI 시대의 코드 품질](사례/2026-09-08-Tech-Bridge-AI-시대-코드-품질.md)
+- [실밸개발자 — Spec-Driven Development와 에이전트 실행 하네스](사례/2026-09-24-실밸개발자-Spec-Driven-Development.md)
