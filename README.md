@@ -34,6 +34,13 @@ Claude Code, Codex, Gemini CLI 등 에이전트 자체의 지침·기능·권한
 - [에이전트 설정 개요](03-에이전트-설정/README.md)
 - [마일드코드 — CLAUDE.md 구성과 역할 분리](03-에이전트-설정/사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md)
 
+### 04. 로컬 LLM 구축
+
+AI 에이전트를 구동할 로컬·온디바이스 LLM의 선정·설치·서빙·성능 검증 방법을 정리합니다.
+
+- [로컬 LLM 구축 개요](04-로컬-LLM-구축/README.md)
+- [Strata + Qwen 3.8 Flash Next — DRAM 중심 로컬 LLM 사례](04-로컬-LLM-구축/사례/2026-10-09-SoulSeeker-Strata-Qwen-3.8-Flash-Next-DRAM-중심-로컬-LLM.md)
+
 ## 분석 도구
 
 - [유튜브 분석 도구](99-도구/01-유튜브-분석/README.md)
