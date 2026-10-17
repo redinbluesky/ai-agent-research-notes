@@ -2,10 +2,11 @@
 
 ## 범위와 근거
 
-Claude Code의 공통 지침·경로별 규칙·스킬·훅·서브에이전트를 구성하는 방법을 정리한다. 출처별 사례와 공식 문서를 종합한 설정 가이드이며, 빈 템플릿이나 실제 설치된 설정 파일이 아니다.
+Claude Code의 공통 지침·경로별 규칙·스킬·훅·서브에이전트·Effort를 구성하는 방법을 정리한다. 출처별 사례와 공식 문서를 종합한 설정 가이드이며, 빈 템플릿이나 실제 설치된 설정 파일이 아니다.
 
 - 반영 사례: [마일드코드 — CLAUDE.md 구성과 역할 분리](../사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md)
-- 공식 문서 확인일: 2026-10-07. 핵심 역할 구분을 비교하고 설정 적용 범위와 비동기 훅 주의사항을 보강했다. 세부 옵션 전체를 재검증한 것은 아니다.
+- 반영 사례: [Jay Choi — Claude Code 활용 전략](../사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md)
+- 공식 문서 확인일: 2026-10-17. 핵심 역할 구분, `AGENTS.md` 로딩 조건, Effort 적용 범위, 설정 적용 범위와 비동기 훅 주의사항을 확인했다. 세부 옵션 전체를 재검증한 것은 아니다.
 - 검증 범위: 공식 문서에 근거한 구성 설명. 예시를 실제 Claude Code 환경에 설치하거나 실행 검증하지 않았다.
 - 권한·샌드박스·MCP의 상세 설정은 현재 범위에 포함하지 않는다.
 
@@ -81,6 +82,17 @@ Claude Code의 공통 지침·경로별 규칙·스킬·훅·서브에이전트�
 
 위 내용은 빈 실행 템플릿이 아니라 구성 설명이다. 실제 파일에는 확인된 명령과 프로젝트 고유 규칙을 넣는다. 승인 요청 같은 자연어 지침만으로 동작이 기술적으로 차단되는 것은 아니다.
 
+### AGENTS.md — 여러 코딩 에이전트와 공통 지침 공유
+
+`AGENTS.md`는 Codex 등 다른 코딩 에이전트와 공통 지침을 공유하는 데 사용할 수 있다. Claude Code도 프로젝트 지침으로 읽을 수 있지만, `CLAUDE.md`와 항상 자동으로 함께 로딩되는 것은 아니다.[12]
+
+기본 설정에서 현재 디렉터리 또는 상위 경로에 `CLAUDE.md`·`.claude/CLAUDE.md`·`CLAUDE.local.md`가 없을 때 Claude Code는 `AGENTS.md`를 읽는다. 공통 지침과 Claude 전용 지침을 모두 써야 한다면 다음 중 하나를 선택한다.[12]
+
+1. `CLAUDE.md`에서 `@AGENTS.md`를 import한다.
+2. `/config`의 Project instructions를 `claude-md-and-agents-md`로 설정한다.
+
+단, 로컬 전용 지침 파일을 추가했을 때도 로딩 조건이 달라질 수 있다. 공통 지침이 실제 세션에 들어왔는지는 시작 시 표시와 설정을 통해 확인한다.[12]
+
 ## 4. Rules — 조건별 규칙
 
 프로젝트의 규칙 파일은 `.claude/rules/`에 둔다. `paths` frontmatter가 없는 규칙은 시작할 때 로딩되며, `paths`를 지정한 규칙은 일치하는 파일을 다룰 때 적용된다.[2]
@@ -129,6 +141,14 @@ disable-model-invocation: true
 3. 실패 항목과 미검증 항목을 정리한다.
 4. 점검 결과만 보고하고 실제 배포는 수행하지 않는다.
 ```
+
+### Effort — 작업 강도와 자율성 조절
+
+세션의 Effort는 `/effort` 또는 `--effort`로 조절한다. 공식 문서는 `low`, `medium`, `high`, `xhigh`, `max` 등을 예시로 들지만, 실제 사용 가능한 수준은 모델에 따라 다르다.[13]
+
+Effort가 높다고 항상 더 좋은 결과가 나오는 것은 아니다. 더 많은 검토와 자율 판단이 필요한 복잡한 조사·버그 분석에는 높은 수준을 비교할 수 있지만, 짧은 수정이나 사용자가 세부 방향을 통제하는 작업에는 불필요한 지연·비용·변경 범위 확대가 될 수 있다.[11][13]
+
+스킬 또는 서브에이전트의 frontmatter `effort`는 활성화된 동안 세션 수준을 덮어쓸 수 있다. 따라서 동일한 대표 작업으로 결과 품질, 테스트 통과, 지연, 사용량, 불필요한 변경을 비교해 프로젝트별 기본값을 정한다.[13]
 
 ## 6. Hooks — 이벤트 기반 실행 제어
 
@@ -199,6 +219,7 @@ disable-model-invocation: true
 ## 10. 참고 사례와 공식 문서
 
 - [마일드코드 영상 요약](../사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md): 역할 분리의 출발점.
+- [Jay Choi 영상 분석](../사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md): `AGENTS.md`, Effort, 선택적 스킬 사용의 조건과 한계.
 - 공식 문서 링크는 아래 Sources에 모았다. 상세 동작은 영상의 간략한 표현보다 공식 문서의 조건을 기준으로 해석한다.
 - [에이전트 설정 개요](../README.md)
 
@@ -212,3 +233,6 @@ disable-model-invocation: true
 [6] https://code.claude.com/docs/en/features-overview
 [7] https://code.claude.com/docs/en/settings
 [10] https://code.claude.com/docs/en/hooks.md
+[11] https://www.youtube.com/watch?v=sY7lHUg7HeE
+[12] https://code.claude.com/docs/en/claudemd
+[13] https://code.claude.com/docs/en/model-config

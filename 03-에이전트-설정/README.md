@@ -14,7 +14,7 @@ Claude Code, Codex, Gemini CLI 등 **에이전트 자체의 지침·기능·권�
 
 | 도구 | 산출물 | 현재 정리 범위 |
 |---|---|---|
-| Claude Code | [Claude Code 설정](산출물/Claude-Code-설정.md) | CLAUDE.md, Rules, Skills, Hooks, Agents의 역할·구조·적용 방법 |
+| Claude Code | [Claude Code 설정](산출물/Claude-Code-설정.md) | CLAUDE.md·AGENTS.md, Effort, Rules, Skills, Hooks, Agents의 역할·구조·적용 방법 |
 | Codex | 아직 작성하지 않음 | 후속 자료 확보 시 `산출물/Codex-설정.md`로 정리 |
 | Gemini CLI | 아직 작성하지 않음 | 후속 자료 확보 시 `산출물/Gemini-CLI-설정.md`로 정리 |
 
@@ -23,6 +23,7 @@ Claude Code, Codex, Gemini CLI 등 **에이전트 자체의 지침·기능·권�
 | 출처 | 사례 | 반영 산출물 |
 |---|---|---|
 | 마일드코드 · 2026-09-27 · YouTube Shorts | [CLAUDE.md 구성과 역할 분리](사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
+| Jay Choi · 2026-09-30 · YouTube | [Claude Code 활용 전략](사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
 
 ## 자료 추가 기준
 
