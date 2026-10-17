@@ -1,6 +1,6 @@
 # 에이전트 설정
 
-Claude Code, Codex, Gemini CLI 등 **에이전트 자체의 지침·기능·권한·실행 환경을 설정하는 방법**을 정리한다.
+Claude Code, Codex, Gemini CLI, Hermes 등 **에이전트 자체의 지침·기능·권한·실행 환경과 서브에이전트 위임·Goal·역할 기반 오케스트레이션을 설정하는 방법**을 정리한다.
 
 ## 문서 구성
 
@@ -24,6 +24,7 @@ Claude Code, Codex, Gemini CLI 등 **에이전트 자체의 지침·기능·권�
 |---|---|---|
 | 마일드코드 · 2026-09-27 · YouTube Shorts | [CLAUDE.md 구성과 역할 분리](사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
 | Jay Choi · 2026-09-30 · YouTube | [Claude Code 활용 전략](사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
+| Wanderloots · 2026-09-19 · YouTube | [Hermes 서브에이전트·Goal·Bot·Kanban](사례/2026-09-19-Wanderloots-Hermes-서브에이전트-목표-칸반.md) | 해당 없음 — Hermes 오케스트레이션 사례 |
 
 ## 자료 추가 기준
 
