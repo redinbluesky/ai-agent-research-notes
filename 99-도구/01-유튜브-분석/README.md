@@ -37,6 +37,17 @@ uv run 유튜브_분석.py "https://youtu.be/VIDEO_ID" --결과-폴더 "결과"
 - 생성된 원본 자막과 중간 산출물은 로컬 `결과/`에만 보관합니다.
 - 최종 분석 문서는 각 주제의 `사례/` 폴더에 별도로 저장합니다.
 
+## Hermes 연동
+
+프로젝트 루트의 `.hermes/skills/youtube-analysis/SKILL.md`는 이 도구를 Hermes의 표준 YouTube 분석 추출기로 지정합니다. 프로젝트 로컬 스킬을 신뢰한 뒤 Hermes에서 YouTube URL과 분석 요청을 함께 전달하면, 이 도구로 `분석-입력자료.md`를 만든 후 근거 기반 분석을 진행합니다.
+
+```bash
+cd "D:\llm\AI Agent 정리"
+hermes skills trust
+```
+
+최종 사례 문서 저장은 대상 주제와 경로를 먼저 제안하고 사용자 승인을 받은 뒤 수행합니다.
+
 ## 테스트
 
 ```bash
