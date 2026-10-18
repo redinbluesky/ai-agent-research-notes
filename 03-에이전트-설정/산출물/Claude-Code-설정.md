@@ -142,6 +142,20 @@ disable-model-invocation: true
 4. 점검 결과만 보고하고 실제 배포는 수행하지 않는다.
 ```
 
+### 외부 Skill Plugin 설치와 명시 호출
+
+`mattpocock/skills` README는 Claude Code용 설치 명령으로 아래 한 줄을 제시한다.[14]
+
+```bash
+claude plugin install mattpocock-skills@claude-plugins-official
+```
+
+Claude Code 플러그인은 스킬·서브에이전트·훅·MCP 서버를 하나의 설치 단위로 묶을 수 있다. 설치 화면 또는 `/plugin`의 상세 정보에서 포함 구성 요소, 문맥 비용, 실행 권한을 확인한 뒤 설치 범위(사용자·프로젝트·로컬)를 선택한다.[14][15]
+
+저장소 README는 설치 후 저장소별 초기 설정 스킬인 `setup-matt-pocock-skills`를 한 번 실행하도록 안내한다. 이 스킬은 이슈 트래커, triage 라벨, 문서 저장 위치를 묻는다.[14] 플러그인에 포함된 스킬의 정확한 명령 표시는 플러그인 namespace와 설치 버전에 따라 달라질 수 있으므로, `/plugin` 또는 slash-command 목록에서 실제 표시 이름을 확인해 호출한다. Claude Code의 일반 플러그인 스킬은 `/plugin-name:skill-name` 형식으로 표시될 수 있다.[15]
+
+첫 작업은 `grill-with-docs`로 요구·용어·결정을 정렬한 뒤, 구현과 검증으로 이어가는 것이 이 사례의 기본 흐름이다. `tdd`와 `code-review` 같은 모델 호출 스킬은 작업 설명과 메타데이터에 따라 자동 적용될 수 있으므로, 부작용이 있는 절차는 자동 호출 여부를 별도로 확인한다.[14][15]
+
 ### Effort — 작업 강도와 자율성 조절
 
 세션의 Effort는 `/effort` 또는 `--effort`로 조절한다. 공식 문서는 `low`, `medium`, `high`, `xhigh`, `max` 등을 예시로 들지만, 실제 사용 가능한 수준은 모델에 따라 다르다.[13]
@@ -236,3 +250,5 @@ Effort가 높다고 항상 더 좋은 결과가 나오는 것은 아니다. 더 
 [11] https://www.youtube.com/watch?v=sY7lHUg7HeE
 [12] https://code.claude.com/docs/en/claudemd
 [13] https://code.claude.com/docs/en/model-config
+[14] https://raw.githubusercontent.com/mattpocock/skills/main/README.md
+[15] https://code.claude.com/docs/en/plugins

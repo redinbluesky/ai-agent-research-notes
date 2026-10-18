@@ -15,7 +15,7 @@ Claude Code, Codex, Gemini CLI, Hermes 등 **에이전트 자체의 지침·기�
 | 도구 | 산출물 | 현재 정리 범위 |
 |---|---|---|
 | Claude Code | [Claude Code 설정](산출물/Claude-Code-설정.md) | CLAUDE.md·AGENTS.md, Effort, Rules, Skills, Hooks, Agents의 역할·구조·적용 방법 |
-| Codex | 아직 작성하지 않음 | 후속 자료 확보 시 `산출물/Codex-설정.md`로 정리 |
+| Codex | [Codex 설정](산출물/Codex-설정.md) | Skill·Plugin·Marketplace의 구분, `mattpocock/skills` 설치·명시 호출, 로컬 스킬 탐색 범위 |
 | Gemini CLI | 아직 작성하지 않음 | 후속 자료 확보 시 `산출물/Gemini-CLI-설정.md`로 정리 |
 
 ## 출처별 사례
@@ -24,6 +24,7 @@ Claude Code, Codex, Gemini CLI, Hermes 등 **에이전트 자체의 지침·기�
 |---|---|---|
 | 마일드코드 · 2026-09-27 · YouTube Shorts | [CLAUDE.md 구성과 역할 분리](사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
 | Jay Choi · 2026-09-30 · YouTube | [Claude Code 활용 전략](사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
+| MINDUNG · 2026-10-17 · YouTube / Matt Pocock 저장소 | [Matt Pocock Skills와 AI 코딩 루프](사례/2026-10-17-MINDUNG-Matt-Pocock-Skills와-AI-코딩-루프.md) | [Claude Code 설정](산출물/Claude-Code-설정.md)<br>[Codex 설정](산출물/Codex-설정.md) |
 | Wanderloots · 2026-09-19 · YouTube | [Hermes 서브에이전트·Goal·Bot·Kanban](사례/2026-09-19-Wanderloots-Hermes-서브에이전트-목표-칸반.md) | 해당 없음 — Hermes 오케스트레이션 사례 |
 
 ## 자료 추가 기준
