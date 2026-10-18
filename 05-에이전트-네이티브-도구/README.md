@@ -22,10 +22,12 @@
 |---|---|---|
 | AI 슬래시 · 2026-10-14 · YouTube | [REA 리버스 엔지니어링](사례/2026-10-14-AI-슬래시-REA-리버스-엔지니어링.md) | CLI·MCP·증거 레코드로 에이전트 분석을 연결하는 REA의 개념과 권한 경계 |
 | Jay Choi · 2026-10-15 · YouTube | [에이전트 네이티브 도구 4종](사례/2026-10-15-Jay-Choi-에이전트-네이티브-도구.md) | REA, PhotoCraft, VoiceStudio, hyperframes와 에이전트 직접 조작 인터페이스 |
+| 해피AI \| 이진규 · 2026-10-16 · YouTube | [Aside × Claude 브라우저 업무 자동화](사례/2026-10-16-해피AI-Aside-Claude-브라우저-업무자동화.md) | AI 브라우저의 웹 탐색·클릭·정보 수집·Google Sheets 기록과 승인 경계 |
 
 ## 핵심 문서
 
 - [REA 설치·사용법](핵심-문서/REA-설치-사용법.md) — Windows에서 권한이 있는 대상을 기준으로 한 설치 계획 검토, 에이전트 연결, 준비 상태 확인, 최소 분석 흐름
+- [Aside 설치·사용법](핵심-문서/Aside-설치-사용법.md) — Windows 설치, Claude 구독 연결, CLI·MCP·REPL 경로의 구분과 안전한 첫 브라우저 작업
 
 ## 다른 주제와의 연결
 
