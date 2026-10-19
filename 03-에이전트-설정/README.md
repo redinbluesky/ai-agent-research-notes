@@ -25,6 +25,7 @@ Claude Code, Codex, Gemini CLI, Hermes 등 **에이전트 자체의 지침·기�
 | 마일드코드 · 2026-09-27 · YouTube Shorts | [CLAUDE.md 구성과 역할 분리](사례/2026-09-27-마일드코드-CLAUDE.md-구성과-역할-분리.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
 | Jay Choi · 2026-09-30 · YouTube | [Claude Code 활용 전략](사례/2026-09-30-Jay-Choi-Claude-Code-활용-전략.md) | [Claude Code 설정](산출물/Claude-Code-설정.md) |
 | MINDUNG · 2026-10-17 · YouTube / Matt Pocock 저장소 | [Matt Pocock Skills와 AI 코딩 루프](사례/2026-10-17-MINDUNG-Matt-Pocock-Skills와-AI-코딩-루프.md) | [Claude Code 설정](산출물/Claude-Code-설정.md)<br>[Codex 설정](산출물/Codex-설정.md) |
+| MINDUNG · 2026-10-18 · YouTube | [AI 코딩 스킬 비교: Matt Pocock, Addy Osmani, pstack](사례/2026-10-18-MINDUNG-AI-코딩-스킬-비교.md) | 해당 없음 — 스킬 체계 비교 사례 |
 | Wanderloots · 2026-09-19 · YouTube | [Hermes 서브에이전트·Goal·Bot·Kanban](사례/2026-09-19-Wanderloots-Hermes-서브에이전트-목표-칸반.md) | 해당 없음 — Hermes 오케스트레이션 사례 |
 
 ## 자료 추가 기준
