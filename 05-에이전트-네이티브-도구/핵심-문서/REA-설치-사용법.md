@@ -47,10 +47,10 @@ npx -y rea-agents@latest setup --client codex --dry-run
 
 ## 3. 에이전트에 REA 연결
 
-검토 결과가 적절하면 대화형 설정을 실행한다.
+검토 결과가 적절하면 검토 때와 같은 대상 범위로 대화형 설정을 실행한다. Codex만 연결하는 경우에는 `--client codex`를 유지한다.
 
 ```bash
-npx -y rea-agents@latest setup
+npx -y rea-agents@latest setup --client codex
 ```
 
 설정 화면에서 다음을 확인한다.
@@ -78,17 +78,25 @@ rea update
 
 설치 직후에는 실제 분석 전에 `doctor`로 에이전트 연결과 분석 엔진 준비 상태를 확인한다.
 
+`npx`로 설치·연결한 경우에는 전역 `rea` 명령이 없으므로 동일한 패키지 실행 방식으로 진단한다. Codex 등록과 함께 설치한 REA 스킬까지 준비 조건으로 포함하려면 `--skill`을 지정한다.
+
 ```bash
-rea doctor --json
+npx -y rea-agents@latest doctor --client codex --skill --json
 ```
 
-특정 에이전트 연결만 확인하는 예시는 다음과 같다.
+전역 CLI를 설치한 경우에는 다음처럼 실행할 수 있다.
 
 ```bash
-rea doctor --client codex --json
+rea doctor --client codex --skill --json
 ```
 
 `doctor`는 읽기 전용 진단이며, 등록·스킬·분석 엔진의 상태를 구분해 보여 준다. 전체 상태가 완전히 정상이지 않아도, 선택한 정적 분석 작업은 가능할 수 있으므로 필요한 작업 범위의 결과를 확인한다.[2]
+
+`doctor`의 `live_server`가 `unknown`이면 등록 파일만으로 실행 중인 Codex의 MCP 세션까지 확인할 수 없다는 뜻이다. Codex를 재시작한 뒤 REA MCP 도구 호출을 명시적으로 요청해 실제 연결을 확인한다.
+
+```text
+REA MCP 도구를 호출하여 현재 사용할 수 있는 REA 기능과 서버 버전을 확인해 줘. 추측하지 말고 도구 호출 결과만 요약해 줘.
+```
 
 ## 5. 권장 첫 분석: JavaScript·Electron 앱
 
