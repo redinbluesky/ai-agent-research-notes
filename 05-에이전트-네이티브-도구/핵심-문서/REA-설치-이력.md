@@ -3,6 +3,7 @@
 ## 설치 목적
 
 - REA(Reverse Engineer Anything)를 **Codex**와 연결해, 권한이 있는 로컬 대상의 분석에 사용한다.
+- 2026-10-20부터 **Hermes(profile `ai`)** 연결을 추가한다. Codex 크레딧 소진으로 파일럿 P0~P2는 Hermes–REA 경로를 우선 사용하고, Codex 등록은 유지해 크레딧 충전 시 재사용한다.
 - 대상의 라이선스·소유권·분석 허가를 확인한 범위에서만 사용한다.
 
 ## 환경
@@ -25,6 +26,9 @@
 | 2026-10-19 16:10 | 3. Codex 연동 설치 | `npx --yes rea-agents@latest setup --client codex`을 실행하고 두 변경을 승인했다. | 설치 완료 | Codex MCP 등록, REA 스킬, 설정 백업의 존재를 확인했다. REA가 Codex 재시작을 요구했다. |
 | 2026-10-19 16:28 | 4. 준비 상태 진단 | `npx --yes rea-agents@latest doctor --client codex --json`을 실행했다. | Codex 연동 통과 | `healthy: true`, Codex 등록 상태 `aligned`, REA 스킬 상태 `aligned`(버전 42)이다. 분석 엔진은 아직 설치·설정하지 않았다. |
 | 2026-10-19 16:32 | 5. Codex 실연결 검증 | 재시작한 Codex에서 REA `binary_session` MCP 도구를 호출했다. | 통과 | REA 6.7.0 서버가 응답했다. MCP 도구 207개 중 현재 77개가 사용 가능하며, 열린 분석 대상은 없다. |
+| 2026-10-20 | 6. Hermes 연결 계획 검토 | `npx -y rea-agents@latest setup --client hermes --dry-run`을 실행했다. | 검토 완료 | 변경 계획 2건: `profiles/ai/config.yaml`에 REA MCP 등록(백업 `config.yaml.rea.backup` 생성)과 `profiles/ai/skills/reverse-engineer-anything` 스킬 설치. aside 등록 등 무관한 설정은 보존한다. Codex 등록은 `aligned` 상태로 유지. |
+| 2026-10-20 | 7. Hermes 연동 설치 | 사용자 승인 후 `npx -y rea-agents@latest setup --client hermes --yes`를 에이전트가 실행했다. | 설치 완료 | `configured_hermes`, `installed_skill` 적용. doctor `healthy: true`, Hermes 등록 `aligned`, 스킬 버전 42 `aligned`(MCP 도구 207개). Codex 등록도 여전히 `aligned`. |
+| 2026-10-20 | 8. Hermes 실연결 검증 | Hermes를 재시작한 뒤 새 세션에서 REA `mcp__rea__binary_session`을 호출했다. | 통과 | REA 6.7.0 서버가 응답했다(스킬 42 정렬, catalog 207개). 열린 대상 없음(`open: false`). 현재 Windows에서 사용 가능한 관찰 도구군과 대상 필요·미설치 도구군을 확인했다. |
 
 ## 확인된 변경 범위
 

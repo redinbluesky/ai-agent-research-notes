@@ -60,6 +60,8 @@ npx -y rea-agents@latest setup --client codex
 3. 선택적 Hopper 설치 여부는 별도 승인으로 판단한다.
 4. 완료 후 설정한 에이전트를 완전히 재시작한다.
 
+승인 절차는 대화형이며, 승인된 계획을 논대화형으로 적용할 때는 `--yes`를 붙인다(`setup --client <id>` 단독 실행은 검토 후 `rerun interactively or with --yes`를 요구하며 아무것도 적용하지 않는다). 에이전트가 자체 터미널로 실행하는 경우 이 옵션이 필요하다. 클라이언트 ID는 `--dry-run` 출력의 등록 목록에서 확인할 수 있으며, Hermes는 `hermes`다(프로필의 `config.yaml`에 등록되고 profile 스킬 폴더에 REA 스킬이 설치된다).
+
 전역 CLI를 유지하고 싶다면 다음처럼 설치한다.
 
 ```bash
