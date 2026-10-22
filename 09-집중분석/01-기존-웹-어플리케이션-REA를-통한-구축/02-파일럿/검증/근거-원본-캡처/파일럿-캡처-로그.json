@@ -1,0 +1,14 @@
+[
+  {
+    "label": "main",
+    "url": "http://localhost:5173/"
+  },
+  {
+    "label": "login",
+    "url": "http://localhost:5173/login"
+  },
+  {
+    "label": "login-inline-error",
+    "url": "http://localhost:5173/login"
+  }
+]

@@ -1,0 +1,213 @@
+- document:
+  - table:
+    - rowgroup:
+      - row:
+        - cell
+      - row "vaatz logo 협력사전용몰 거래현황 고객센터 Vaatz Home":
+        - cell "vaatz logo 협력사전용몰 거래현황 고객센터 Vaatz Home":
+          - table:
+            - rowgroup:
+              - row "vaatz logo 협력사전용몰 거래현황 고객센터 Vaatz Home":
+                - cell "vaatz logo":
+                  - img "vaatz logo"
+                - cell "협력사전용몰 거래현황 고객센터 Vaatz Home":
+                  - table:
+                    - rowgroup:
+                      - row "협력사전용몰 거래현황 고객센터 Vaatz Home":
+                        - cell "협력사전용몰 거래현황 고객센터 Vaatz Home":
+                          - table:
+                            - rowgroup:
+                              - row "협력사전용몰 거래현황 고객센터 Vaatz Home":
+                                - cell "협력사전용몰":
+                                  - button "협력사전용몰"
+                                - cell "거래현황":
+                                  - button "거래현황"
+                                - cell "고객센터":
+                                  - button "고객센터"
+                                - cell "Vaatz Home":
+                                  - button "Vaatz Home"
+                        - cell:
+                          - table:
+                            - rowgroup:
+                              - row:
+                                - cell:
+                                  - link:
+                                    - /url: javascript:jsLoginRedirect()
+                                    - img
+                                - cell:
+                                  - link:
+                                    - /url: javascript:jsLoginRedirect()
+                                    - img
+      - row:
+        - cell:
+          - img
+      - row "통합검색 상품명을 입력해 주세요. 검색":
+        - cell "통합검색 상품명을 입력해 주세요. 검색":
+          - table:
+            - rowgroup:
+              - row "통합검색 상품명을 입력해 주세요. 검색":
+                - cell "통합검색 상품명을 입력해 주세요. 검색":
+                  - table:
+                    - rowgroup:
+                      - row "통합검색 상품명을 입력해 주세요. 검색":
+                        - cell:
+                          - img
+                        - cell
+                        - cell:
+                          - img
+                        - cell "통합검색 상품명을 입력해 주세요. 검색":
+                          - table:
+                            - rowgroup:
+                              - row "통합검색 상품명을 입력해 주세요. 검색":
+                                - cell "통합검색 상품명을 입력해 주세요. 검색":
+                                  - table:
+                                    - rowgroup:
+                                      - row "통합검색 상품명을 입력해 주세요. 검색":
+                                        - cell "통합검색":
+                                          - combobox:
+                                            - option "통합검색" [selected]
+                                            - option "상품명"
+                                            - option "제조사"
+                                            - option "사양"
+                                            - option "상품번호"
+                                            - option "공급사"
+                                        - cell "상품명을 입력해 주세요.":
+                                          - textbox: 상품명을 입력해 주세요.
+                                        - cell "검색":
+                                          - img "검색"
+                                        - cell
+  - table:
+    - rowgroup:
+      - row "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+        - cell "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+          - table:
+            - rowgroup:
+              - row "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+                - cell "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+                  - table:
+                    - rowgroup:
+                      - row "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+                        - cell "로그인을 하시기 바랍니다. Vaatz menu 전산용품 mall 포장자재 mall":
+                          - table:
+                            - rowgroup:
+                              - row "로그인을 하시기 바랍니다.":
+                                - cell "로그인을 하시기 바랍니다."
+                              - row "Vaatz menu 전산용품 mall 포장자재 mall":
+                                - cell "Vaatz menu 전산용품 mall 포장자재 mall":
+                                  - table:
+                                    - rowgroup:
+                                      - row "Vaatz menu":
+                                        - cell "Vaatz menu":
+                                          - img "Vaatz menu"
+                                      - row "전산용품 mall 포장자재 mall":
+                                        - cell "전산용품 mall 포장자재 mall":
+                                          - table:
+                                            - rowgroup:
+                                              - row "전산용품 mall 포장자재 mall":
+                                                - cell "전산용품 mall 포장자재 mall":
+                                                  - table:
+                                                    - rowgroup:
+                                                      - row "전산용품 mall":
+                                                        - cell "전산용품 mall"
+                                                      - row "포장자재 mall":
+                                                        - cell "포장자재 mall"
+                      - row:
+                        - cell
+                      - row:
+                        - cell:
+                          - img
+        - cell:
+          - table:
+            - rowgroup:
+              - row:
+                - cell
+              - row:
+                - cell:
+                  - table:
+                    - rowgroup:
+                      - row:
+                        - cell:
+                          - img
+                      - row:
+                        - cell
+                        - cell:
+                          - table:
+                            - rowgroup:
+                              - row:
+                                - cell
+                              - row:
+                                - cell:
+                                  - table:
+                                    - rowgroup:
+                                      - row:
+                                        - cell:
+                                          - table:
+                                            - rowgroup:
+                                              - row:
+                                                - cell:
+                                                  - img
+                                                - cell:
+                                                  - textbox
+                                              - row:
+                                                - cell:
+                                                  - img
+                                                - cell:
+                                                  - textbox
+                                              - row:
+                                                - cell
+                                                - cell
+                                              - row:
+                                                - cell
+                                              - row:
+                                                - cell:
+                                                  - img
+                                                - cell:
+                                                  - img
+                                        - cell:
+                                          - img
+                        - cell
+                      - row:
+                        - cell:
+                          - img
+                      - row
+        - cell
+  - table:
+    - rowgroup:
+      - row:
+        - cell:
+          - img
+      - 'row "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+        - 'cell "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+          - table:
+            - rowgroup:
+              - 'row "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+                - cell "logo":
+                  - img "logo"
+                - 'cell "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED"':
+                  - table:
+                    - rowgroup:
+                      - 'row "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀"':
+                        - 'cell "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀"'
+                      - row "COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED":
+                        - cell "COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED"
+                - cell "개인정보 보안 이용약관 이메일 무단수집거부":
+                  - table:
+                    - rowgroup:
+                      - row "개인정보 보안 이용약관 이메일 무단수집거부":
+                        - cell "개인정보 보안":
+                          - link "개인정보 보안":
+                            - /url: Page.html
+                            - img "개인정보 보안"
+                        - cell:
+                          - img
+                        - cell "이용약관":
+                          - link "이용약관":
+                            - /url: javascript:MM_openBrWindow('/vmp/common/popup/agreementPrintPopup.do','','scrollbars=yes,width=567,height=500');
+                            - img "이용약관"
+                        - cell:
+                          - img
+                        - cell "이메일 무단수집거부":
+                          - link "이메일 무단수집거부":
+                            - /url: javascript:MM_openBrWindow('/vmp/common/popup/emailRefusePopup.do','','width=440,height=235');
+                            - img "이메일 무단수집거부"
+  - iframe

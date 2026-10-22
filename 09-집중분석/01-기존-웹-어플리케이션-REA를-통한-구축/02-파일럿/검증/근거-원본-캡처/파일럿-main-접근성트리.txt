@@ -1,0 +1,21 @@
+- banner:
+  - link "VAATZ 파일럿 (데모)":
+    - /url: /
+  - navigation "주요 메뉴":
+    - list:
+      - listitem:
+        - button "공지사항"
+      - listitem:
+        - button "자료실"
+      - listitem:
+        - button "마이페이지"
+  - button "로그인"
+- main:
+  - heading "대메뉴" [level=1]
+  - region "공지 목록":
+    - heading "공지" [level=2]
+    - list:
+      - listitem: "[가상] 파일럿 데모 공지 1"
+      - listitem: "[가상] 파일럿 데모 공지 2"
+      - listitem: "[가상] 파일럿 데모 공지 3"
+- contentinfo: 이 화면은 원본 VAATZ를 답사한 파일럿 데모이며, 실제 업무 시스템과 연결되어 있지 않습니다.

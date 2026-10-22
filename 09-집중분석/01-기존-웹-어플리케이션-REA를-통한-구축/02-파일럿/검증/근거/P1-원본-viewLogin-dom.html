@@ -1,0 +1,1397 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="author" content="vaatz">
+<meta name="copyright" content=" 2015 vaatz">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>VAATZ Marketplace</title>
+
+<link rel="stylesheet" type="text/css" media="screen" href="/vmp/style/common/new_main.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/vmp/style/common/common.css">
+<link rel="stylesheet" type="text/css" media="screen" href="/vmp/style/common/top.css">
+
+<script type="text/javascript" src="/vmp/scripts/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/vmp/scripts/common.js"></script>
+<script type="text/javascript" src="/vmp/scripts/json2.js"></script>
+<script type="text/javascript" src="/vmp/scripts/vmp.js"></script>
+
+<script type="text/javascript">
+    
+    	var _vmpContextRoot = "/vmp";
+		var _vmpGridObjes	 = new Array(); 
+	    
+		// 로그아웃
+	    function doLogout(){
+	        $.ajax({
+	            type:"post",
+	            url:"/vmp/common/login/logout.do",
+	            beforeSend : function(xhr){
+	                xhr.setRequestHeader("res-protocol", "json");  
+	            },
+	            success:function(data) {
+	                doCallBackCommon(data, function(pbSuccess, poJson){
+	                    if(pbSuccess){
+	                        document.location.href = "/vmp" + poJson.URL;    
+	                    }
+	                });
+	            }
+	         });
+	    }
+	    
+	    // 구매 처리 후 구매요청서 작성 화면으로 이동하는 함수 
+	    function doBuyCatItem(psMode, psPrdId, psSclId, psSclQty) {
+	        $.ajax({
+                type:"post",
+                url:"/vmp/common/login/ma007/buyCatItem.do",
+                data:{
+                      mode : psMode
+                    , prd_id : psPrdId
+                    , scl_id  : psSclId
+                    , scl_qty : psSclQty
+                },
+                beforeSend : function(xhr){
+                    xhr.setRequestHeader("res-protocol", "json");  
+                },
+                success:function(data) {
+                    doCallBackCommon(data, function(pbSuccess, poJson){
+                        if(pbSuccess){
+                            //form 생성
+                            var formId = "form_common_buyCatItem";
+                            var f = document.getElementById(formId);
+                            if(f) {
+                                f.innerHTML = "";
+                            }
+
+                            if(!f || f == undefined) {
+                                f = document.createElement("form");
+                            }
+                            f.setAttribute("id"         ,formId);
+                            f.setAttribute("method"     ,"post");
+                            f.setAttribute("action"     ,"/vmp" + poJson.URL);
+                            f.setAttribute("enctype"    ,"application/x-www-form-urlencoded");
+                            document.body.appendChild(f);
+
+                            //파라미터(콜백메서드) 세팅.
+                            var inputObj = document.createElement("input");
+                            inputObj.setAttribute("type" , "hidden");
+                            inputObj.setAttribute("id"   , "strBrqId");
+                            inputObj.setAttribute("name" , "strBrqId");
+                            inputObj.setAttribute("value", poJson.BRQ_ID);
+                            f.appendChild(inputObj);
+                            
+                            var inputObj = document.createElement("input");
+                            inputObj.setAttribute("type" , "hidden");
+                            inputObj.setAttribute("id"   , "strXtmPath");
+                            inputObj.setAttribute("name" , "strXtmPath");
+                            inputObj.setAttribute("value", "/xtm/front/myvaatz/BU004.xtm");
+                            f.appendChild(inputObj);
+                            
+                            f.submit();
+                        }
+                    });
+                }
+             });
+	    }
+	    
+	    //협력사정보 페이지 이동
+        function doMemberInfo() {
+	        
+            //form 생성
+            var formId = "form_common_forward";
+            var f = document.getElementById(formId);
+            if(f) {
+                f.innerHTML = "";
+            }
+
+            if(!f || f == undefined) {
+                f = document.createElement("form");
+            }
+            f.setAttribute("id"         ,formId);
+            f.setAttribute("method"     ,"post");
+            f.setAttribute("action"     ,"/vmp/common/login/ma006/open.do");
+            f.setAttribute("enctype"    ,"application/x-www-form-urlencoded");
+            document.body.appendChild(f);
+            
+            f.submit();
+        }
+        
+        //거래현황메인 페이지 이동
+        function doPurchaseMain() {
+            
+            //form 생성
+            var formId = "form_common_forward";
+            var f = document.getElementById(formId);
+            if(f) {
+                f.innerHTML = "";
+            }
+
+            if(!f || f == undefined) {
+                f = document.createElement("form");
+            }
+            f.setAttribute("id"         ,formId);
+            f.setAttribute("method"     ,"post");
+            f.setAttribute("action"     ,"/vmp/front/myvaatz/bu001/purchaseMain.do");
+            f.setAttribute("enctype"    ,"application/x-www-form-urlencoded");
+            document.body.appendChild(f);
+            
+            f.submit();
+        }
+        
+        //제품상세 페이지 이동
+        function doCatalogGoodsDetail(psPctCd, psPrdId) {
+            
+            //form 생성
+            var formId = "form_common_forward";
+            var f = document.getElementById(formId);
+            if(f) {
+                f.innerHTML = "";
+            }
+
+            if(!f || f == undefined) {
+                f = document.createElement("form");
+            }
+            f.setAttribute("id"         ,formId);
+            f.setAttribute("method"     ,"post");
+            f.setAttribute("action"     ,"/vmp/front/catalog/ca005/onLoad.do");
+            f.setAttribute("enctype"    ,"application/x-www-form-urlencoded");
+            document.body.appendChild(f);
+            
+            var inputObj = document.createElement("input");
+            inputObj.setAttribute("type" , "hidden");
+            inputObj.setAttribute("id"   , "strPctCd");
+            inputObj.setAttribute("name" , "strPctCd");
+            inputObj.setAttribute("value", psPctCd);
+            f.appendChild(inputObj);
+            
+            var inputObj = document.createElement("input");
+            inputObj.setAttribute("type" , "hidden");
+            inputObj.setAttribute("id"   , "strPrdId");
+            inputObj.setAttribute("name" , "strPrdId");
+            inputObj.setAttribute("value", psPrdId);
+            f.appendChild(inputObj);
+             
+            f.submit();
+        }
+        
+        // 백스페이스키 막기 (2015.11.05 정정호 추가)
+        document.onkeydown=function(){
+            return isBackKeyCheck();
+        };
+    </script>
+
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+
+    <form id="form_logout" name="form_logout" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="REQ_PARAM_CALLBACK_FUNCTION" name="REQ_PARAM_CALLBACK_FUNCTION" style="">
+        <input type="hidden" id="REQ_PARAM_RETURN_URL" name="REQ_PARAM_RETURN_URL" style="">               
+        <input type="hidden" name="csrf" value="" style="">                                           
+        
+        
+    <input type="text" id="" name="" class="display_none" style=""></form>
+
+    
+    <form id="form_for_move" name="form_for_move" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" id="REQ_PARAM_CALLBACK_FUNCTION" name="REQ_PARAM_CALLBACK_FUNCTION" style="">
+        <input type="hidden" id="REQ_PARAM_RETURN_URL" name="REQ_PARAM_RETURN_URL" style="">               
+        <input type="hidden" name="csrf" value="" style="">                                           
+    <input type="text" id="" name="" class="display_none" style=""></form>
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tbody><tr>
+        <td height="20px">&nbsp;</td>
+    </tr>
+    <tr>
+        <td class="top_line">
+            
+            
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td width="185" style="text-align:center;">
+                        <img src="/vmp/images/siteimg/kor/front/catalog/intro/vaatz_logo.gif" width="114" height="37" alt="vaatz logo" onclick="javascript:location.href='/vmp/main.do';" style="cursor:pointer;">
+                    </td>
+                    <td>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0" class="top_menu_bg">
+                            <tbody><tr>
+                                <td width="610">
+                                    
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tbody><tr>
+                                            <td>
+                                                <button id="front_top_btn_1" class="front_top_btn_1_1" onclick="javascript:jsHighCategoryRedirect()" onmouseover="javascript:jsDefTopBtnStyle()" onmouseout="javascript:jsSelectTopBtnStyle()">협력사전용몰</button>
+                                            </td>
+                                            <td>
+                                                
+                                                <button id="front_top_btn_2" class="front_top_btn_2" onclick="javascript:jsLoginRedirect()" onmouseover="javascript:jsDefTopBtnStyle()" onmouseout="javascript:jsSelectTopBtnStyle()">거래현황</button>
+                                                
+                                                
+                                            </td>
+                                            <td>
+                                                <button id="front_top_btn_3" class="front_top_btn_2" onclick="javascript:jsHelpMainRedirect()" onmouseover="javascript:jsDefTopBtnStyle()" onmouseout="javascript:jsSelectTopBtnStyle()">고객센터</button>
+                                            </td>
+                                            <td>
+                                                <button id="front_top_btn_4" class="front_top_btn_3" onclick="javascript:jsHomeRedirect()" onmouseover="javascript:jsDefTopBtnStyle()" onmouseout="javascript:jsSelectTopBtnStyle()">Vaatz Home</button>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                                <td>
+                                    
+                                    <table cellpadding="0" cellspacing="0" border="0" class="top_quick_menu">
+                                        <tbody><tr>
+                                            
+                                            
+                                                <td>
+                                                    <a href="javascript:jsLoginRedirect()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image7','','/vmp/images/siteimg/kor/front/catalog/new_main/top_quick_m00_01.gif',1)">
+                                                        <img src="/vmp/images/siteimg/kor/front/catalog/new_main/top_quick_m00_00.gif" name="Image7" width="40" height="10" border="0" id="Image7">
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:jsLoginRedirect()" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image13','','/vmp/images/siteimg/kor/front/catalog/new_main/top_quick_m03_01.gif',1)">
+                                                        <img src="/vmp/images/siteimg/kor/front/catalog/new_main/top_quick_m03_00.gif" name="Image13" width="38" height="10" border="0" id="Image13">
+                                                    </a>
+                                                </td>
+                                            
+                                            
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+    <tr>
+        <td height="8"><img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1"></td>
+    </tr>
+    <tr>
+        <td width="100%" valign="top">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr>
+                    <td>
+                        
+                        <form name="__search_form" method="post">
+                            <input type="hidden" name="csrf" value="" style="">               
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <colgroup>
+                                    <col width="13">
+                                    <col width="170">
+                                    <col width="20">
+                                    <col>
+                                </colgroup>
+                                <tbody><tr>
+                                    <td>
+                                        <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                                    </td>
+                                    <td class="leftTopBottom">
+                                    </td>
+                                    <td>
+                                        <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                                    </td>
+                                    <td valign="bottom" style="background-color: #f3f3f3;">
+                                        <table cellpadding="0" cellspacing="0" border="0">
+                                            <tbody><tr>
+                                                <td class="search_bg">
+                                                    <table cellpadding="0" cellspacing="0" border="0">
+                                                        <tbody><tr>
+                                                            <td class="pr_10">
+                                                                <select name="strSearchOption" class="fild_border" style="width:140px; height:25px;">
+                                                                    <option value="">통합검색</option>                            
+                                                                    <option value="prd_nm">상품명</option>
+                                                                    <option value="prd_mak_nm">제조사</option>
+                                                                    <option value="prd_spc_nm">사양</option>                          
+                                                                    <option value="prd_no">상품번호</option>
+                                                                    <option value="prd_sel_nm">공급사</option>
+                                                                </select>   
+                                                            </td>
+                                                            <td class="pr_15">
+                                                                <input type="text" id="strSearchWord" name="strSearchWord" class="fild_border" size="72" value="상품명을 입력해 주세요." style="height: 17px;" onclick="this.value=''" onkeypress="if(event.keyCode ==13) {event.keyCode = 0;__search_item(document.__search_form);}">
+                                                            </td>
+                                                            <td class="pr_5">
+                                                                <img src="/vmp/images/siteimg/kor/front/catalog/new_main/btn_search.gif" border="0" alt="검색" onclick="__search_item(document.__search_form)" style="cursor:pointer">
+                                                            </td>
+                                                            <td class="pr_11" style="width:100px">&nbsp;</td>
+                                                        </tr>
+                                                    </tbody></table> 
+                                                    <input type="hidden" id="strSearchOptionHistory" name="strSearchOptionHistory" value="" style="">
+                                                    <input type="hidden" id="strSearchWordHistory" name="strSearchWordHistory" value="" style="">
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                            </tbody></table>
+                        <input type="text" id="" name="" class="display_none" style=""></form>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        jsSelectTopBtnStyle();
+    });
+    
+    function jsSelectTopBtnStyle() {
+        var vsTopBtnId = "front_top_btn_1";
+        if("front_top_btn_1" == vsTopBtnId){
+            $(front_top_btn_1).attr('class', 'front_top_btn_1_1');
+        }else if("front_top_btn_2" == vsTopBtnId){
+            $(front_top_btn_2).attr('class', 'front_top_btn_2_1');
+        }else if("front_top_btn_3" == vsTopBtnId){
+            $(front_top_btn_3).attr('class', 'front_top_btn_2_1');
+        }else if("front_top_btn_4" == vsTopBtnId){
+            $(front_top_btn_4).attr('class', 'front_top_btn_3_1');
+        }
+    }
+    
+    function jsDefTopBtnStyle() {
+        $(front_top_btn_1).attr('class', 'front_top_btn_1');
+        $(front_top_btn_2).attr('class', 'front_top_btn_2');
+        $(front_top_btn_3).attr('class', 'front_top_btn_2');
+        $(front_top_btn_4).attr('class', 'front_top_btn_3');
+    }
+
+    function jsLoginRedirect() {
+        //form 생성
+        var formId = "form_common_loginRedirect";
+        var f = document.getElementById(formId);
+        if(f) {
+            f.innerHTML = "";
+        }
+
+        if(!f || f == undefined) {
+            f = document.createElement("form");
+        }
+        f.setAttribute("id"     ,formId);
+        f.setAttribute("method" ,"post");
+        f.setAttribute("action" ,"/vmp/common/login/viewLogin.do");
+        f.setAttribute("enctype","application/x-www-form-urlencoded");
+        document.body.appendChild(f);
+        
+        // 파라미터(csrf) 세팅.
+        var inputObj = document.createElement("input");
+        inputObj.setAttribute("type" , "hidden");
+        inputObj.setAttribute("name" , "strRtnVoReset");
+        inputObj.setAttribute("value", 'Y');
+        
+        f.appendChild(inputObj);
+        
+        f.submit();
+    }
+    
+    function jsHighCategoryRedirect() {
+        location.href = '/vmp/front/catalog/ca001/onLoad.do';
+    }
+    
+    function jsPurchaseMainRedirect() {
+        location.href = '/vmp/front/myvaatz/bu001/purchaseMain.do';
+    }
+    
+    function jsHelpMainRedirect() {
+        location.href = '/vmp/front/help/hp001/helpMain.do';
+    }
+    
+    function jsHomeRedirect() {
+        location.href = '/vmp/main.do';
+    }
+    
+    //통합검색
+    function __search_item(form) {
+        if (!form.strSearchWord.value || form.strSearchWord.value=="상품명을 입력해 주세요.") {
+            alert("검색어를 입력하십시오.");
+            form.strSearchWord.value = "";
+            form.strSearchWord.focus();
+            return;
+        }
+
+        form.strSearchOption.value = form.strSearchOption.value;
+        form.strSearchWord.value = form.strSearchWord.value;
+        
+        form.action = "/vmp/front/catalog/ca002/onLoad.do";
+        form.submit();
+    }
+    
+</script>
+
+
+    
+<script type="text/javascript" src="/vmp/scripts/xtm/xtm.extUtils.js"></script>
+<script type="text/javascript" src="/vmp/scripts/common.js"></script>
+<script type="text/javascript">
+
+    //IE11 버전 다운로드 팝업 관련
+    function isLowIE() {
+        var vsNav = navigator.userAgent.toLowerCase();
+        return (vsNav.indexOf("msie")!=-1) ? true:false;
+    }
+    
+    if(isLowIE()){
+        MM_openBrWindow("/vmp/common/popup/ieDownload.do", '', 'width=300,height=200');
+    }
+
+    // form validation 정보
+    var arrValidationInfo = null;
+    
+    var hasOtpKey = "N";
+    
+    $(document).ready(function() {
+
+        //모든 form에 auto submit 방지용 dummy inputbox 추가.
+        vmp_addDummyInputBoxForPreventAutoSubmit();
+
+        //form validation 정보 설정.
+        vmp_setFormValidationInfo(arrValidationInfo);
+
+        //enter key event 설정.
+        vmp_setCallFunctionByEnterKey("loginForm", ["strPassWd"], doLogin);
+
+        //quotation 입력 방지
+        vmp_preventQuotationInput();
+
+        $("#btn_login").bind("click", function () {
+            doLogin();
+        });
+        
+        $("#btn_pwOver").bind("click", function () {
+            doPwOver();
+        });
+
+        $("#btn_OTP").bind("click", function () {
+            if(hasOtpKey == "Y"){
+                if(!confirm("OTP가 이미 등록되어 있습니다.\n재등록하면 기존 OTP 앱 연결이 해제됩니다.\n계속하시겠습니까?")){
+                    return;
+                }
+            }
+            doCreateOTP_POP();
+        });
+        
+    });
+
+    //로그인
+    function doLogin() {
+        
+        var f       = document.getElementById("loginForm");
+
+        //validation check
+        if(!vmp_validations(f)) {
+            return false;
+        }
+        
+        var vsUserId = document.getElementById("strUserId").value;
+        if(isNull(vsUserId)) {
+            alert("아이디를 입력해주세요");
+            f.strUserId.focus();
+            return false;
+        }
+        
+        var vsPassWd = document.getElementById("strPassWd").value;
+        if(isNull(vsPassWd)) {
+            alert("비밀번호를 입력해주세요");
+            f.strPassWd.focus();
+            return false;
+        }
+
+        var strStep = document.getElementById("strStep").value;
+        var strOTP = document.getElementById("strOTP").value;
+        if(strStep == "2" && isNull(strOTP)) {
+            alert("OTP번호를 입력해주세요");
+            f.strOTP.focus();
+            return false;
+        }
+        
+        $.ajax({
+            type:"post",
+            url:"/vmp/common/login/login.do",
+            data:{
+                strUserId : vsUserId
+              , strPassWd : vsPassWd
+              , strStep   : strStep        // id/pw 인증단계 표시
+              , strOTP    : strOTP        //  OTP 인증번호
+            },
+            beforeSend : function(xhr){
+                xhr.setRequestHeader("res-protocol", "json");  
+            },
+            success:function(data) {
+                
+                doCallBackCommon(data, function(pbSuccess, poJson){
+                    if(pbSuccess){
+                        // 서버단에서 메세지가 리턴된 경우 화면에 보여줌.
+                        if(poJson.MSG != null && poJson.MSG != ""){
+                            alert(poJson.MSG);
+                        }
+
+                        if(poJson.REDIRECT == "Y"){
+                            location.reload();
+                            return;
+                        }
+
+                        if(poJson.URL == null || poJson.URL == "") return;
+                        
+                        if("Y" == poJson.POPFLAG){
+                            ExtPopUp.winOpen("/vmp" + poJson.URL, "loginPop", 350, 400, "no", "no");
+                            
+                        }else{
+                            //form 생성
+                            var formId = "form_common_login";
+                            var f = document.getElementById(formId);
+                            if(f) {
+                                f.innerHTML = "";
+                            }
+    
+                            if(!f || f == undefined) {
+                                f = document.createElement("form");
+                            }
+                            f.setAttribute("id"     ,formId);
+                            f.setAttribute("method" ,"post");
+                            f.setAttribute("action" ,"/vmp" + poJson.URL);
+                            f.setAttribute("enctype","application/x-www-form-urlencoded");
+                            document.body.appendChild(f);
+                            
+                            // 파라미터(csrf) 세팅.
+                            var inputObj = document.createElement("input");
+                            inputObj.setAttribute("type"    , "hidden");
+                            inputObj.setAttribute("name"    , "csrf");
+                            inputObj.setAttribute("value"   , '');
+                            
+                            f.appendChild(inputObj);
+
+                            if(poJson.strStep == "1"){ // 1차 인증 정상 완료 상태
+                                hasOtpKey = poJson.hasOtpKey;
+                                if(poJson.hasOtpKey != "Y"){
+                                    doCreateOTP_POP();
+                                }
+                                document.getElementById("strStep").value = "2"
+                                document.getElementById("logingTable_item_1").style.display="none";
+                                document.getElementById("strUserId").style.display="none";
+                                document.getElementById("logingTable_item_2").style.display="none";
+                                document.getElementById("strPassWd").style.display="none";
+                                document.getElementById("logingTable_item_4").style.display="inline";
+                                document.getElementById("strOTP").style.display="inline";
+                                document.getElementById("logingTable_item_5").style.display="none";
+                                document.getElementById("logingTable_item_6").style.display="inline";
+                            }
+                            
+                            
+                            if(poJson.strStep == "3"){
+                                f.submit();
+                            }
+                        }
+                    }
+                });
+            }
+         });
+    }
+
+    //2026-07-06 OTP 로그인 추가
+    //OTP 생성 팝업
+    function doCreateOTP_POP() {
+        var mpPopup = window.open("/vmp/common/login/createOTP.do","","scrollbars=no,location=no,status=no,resizable=no,width=450,height=450");
+    }
+    
+    //PW 초기화 팝업 호출
+    function doPwOver() {
+        //alert(1111111);
+        var mpPopup = window.open("/vmp/common/popup/po018/pwOverPopOpen.do?page_gubn=PW&GUBN=PORTAL","","scrollbars=no,location=no,status=no,resizable=no,width=350,height=400");
+    }
+    
+    // password 초기화 popup
+    function doPasswordPopup () {
+        ExtPopUp.winOpen("/vmp/common/popup/po018/onLoad.do", "pwdReqPop", 350, 400, "no", "no");
+    }
+    
+</script>
+    
+    <table width="995" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+            <td width="200" valign="top">
+                
+                
+
+
+
+
+
+
+
+
+<table border="0" cellspacing="0" cellpadding="0" style="margin-left: 13px;">
+    <tbody><tr>
+        <td valign="top" width="170">
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td class="left_menu_bg">
+                        <table cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF">
+                            <tbody><tr>
+                                <td class="left_menu_name">
+                                    
+                                    
+                                        로그인을 하시기 바랍니다.
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <form name="formLeft" id="formLeft" method="post" action="onLoad.do">     
+                                        <input type="hidden" id="strPctCd" name="strPctCd" value="" style="">
+                                        <input type="hidden" id="strSearchType" name="strSearchType" value="L" style="">
+                                        <input type="hidden" id="strDetailSearchWord" name="strDetailSearchWord" value="" style="">
+                                        <input type="hidden" id="strSearchWordHistory" name="strSearchWordHistory" value="" style="">
+                                        <input type="hidden" id="strSearchOption" name="strSearchOption" value="" style="">
+                                        <input type="hidden" id="strSearchOptionHistory" name="strSearchOptionHistory" value="" style="">
+                                        <input type="hidden" id="strPrdId" name="strPrdId" value="" style="">
+                                        <input type="hidden" id="strPageNo" name="strPageNo" value="" style="">
+                                        <input type="hidden" id="strPageSize" name="strPageSize" value="" style="">
+                                        <input type="hidden" name="csrf" value="" style="">                           
+                                    <input type="text" id="" name="" class="display_none" style=""></form>
+                                    <table cellpadding="0" cellspacing="0" border="0">
+                                        <tbody><tr>
+                                            <td>
+                                                <img src="/vmp/images/siteimg/kor/front/catalog/new_main/left_menu_tit.gif" alt="Vaatz menu">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left_menu_text_bg">
+                                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                    <tbody><tr>
+                                                        <td>
+                                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                                <!--2024-02-15 MP 개선 박주영-->
+
+                                                                <tbody><tr>
+                                                                    <td class="sub_left_1dep" id="sub_td_QA" onmouseover="javascript:setStyle_mall('Q', 'QA', '1', '0');showSubMenu('Q', 'QA', '1', '1');" onmouseout="javascript:setStyle_mall('Q', 'QA', '1', '1');wmStartOffTimer();" onclick="javascript:doMainPageCall('QA');">
+                                                                        전산용품 mall
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="sub_left_1dep" id="sub_td_QB" onmouseover="javascript:setStyle_mall('Q', 'QB', '1', '0');showSubMenu('Q', 'QB', '1', '2');" onmouseout="javascript:setStyle_mall('Q', 'QB', '1', '1');wmStartOffTimer();" onclick="javascript:doMainPageCall('QB');">
+                                                                        포장자재 mall
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody></table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody></table>
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="leftMenuBottom">
+                    </td>
+                </tr>
+                <tr>
+                    <td height="15">
+                        <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif">
+                    </td>
+                </tr>
+                <!--tr>                                                        
+                    <td class="pb_5">
+                        <a href="/vmp/front/catalog/ca003/onLoad.do">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/new_main/main_bn01.gif" alt="삼성서울B2B" border="0" />
+                        </a>
+                    </td>
+                </tr>
+                <tr>                                                        
+                    <td class="pb_5">
+                        <a href="/vmp/front/catalog/ca004/onLoad.do">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/new_main/main_bn02.gif" alt="오피스디포" border="0" />
+                        </a>
+                    </td>
+                </tr-->
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+
+    
+        
+            <div id="QA" class="level2" style="position:absolute;z-index:1;display:none; left:0; top:0px; ">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td class="left_menu_2dep_bg_tl" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tc" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tr" height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_ml">
+                             <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="10" height="1">
+                        </td>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="left_menu_2depth">
+        
+                                <tbody><tr>
+                                    <td id="td_2depth_QA_QAA" class="left_menu_2depth_out" onmouseover="setStyle_mall('QA', 'QAA', '2', '0'); showSubMenu('QA', 'QAA', '2', '1')" onmouseout="setStyle_mall('QA', 'QAA', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QAA');">
+                                        노트북
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QA_QAB" class="left_menu_2depth_out" onmouseover="setStyle_mall('QA', 'QAB', '2', '0'); showSubMenu('QA', 'QAB', '2', '2')" onmouseout="setStyle_mall('QA', 'QAB', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QAB');">
+                                        데스크탑
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QA_QAC" class="left_menu_2depth_out" onmouseover="setStyle_mall('QA', 'QAC', '2', '0'); showSubMenu('QA', 'QAC', '2', '3')" onmouseout="setStyle_mall('QA', 'QAC', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QAC');">
+                                        모니터
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QA_QAD" class="left_menu_2depth_out" onmouseover="setStyle_mall('QA', 'QAD', '2', '0'); showSubMenu('QA', 'QAD', '2', '4')" onmouseout="setStyle_mall('QA', 'QAD', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QAD');">
+                                        프린터
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QA_QAE" class="left_menu_2depth_out" onmouseover="setStyle_mall('QA', 'QAE', '2', '0'); showSubMenu('QA', 'QAE', '2', '5')" onmouseout="setStyle_mall('QA', 'QAE', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QAE');">
+                                        부품/소모품류
+                                    </td>
+                                </tr>
+                                
+        
+                            </tbody></table>
+                        </td>
+                        <td class="left_menu_2dep_bg_mr">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="17" height="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_bl">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_bc">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_br">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        
+        
+    
+        
+            <div id="QB" class="level2" style="position:absolute;z-index:1;display:none; left:0; top:0px; ">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td class="left_menu_2dep_bg_tl" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tc" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tr" height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_ml">
+                             <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="10" height="1">
+                        </td>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="left_menu_2depth">
+        
+                                <tbody><tr>
+                                    <td id="td_2depth_QB_QBA" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBA', '2', '0'); showSubMenu('QB', 'QBA', '2', '1')" onmouseout="setStyle_mall('QB', 'QBA', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBA');">
+                                        철재박스
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QB_QBB" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBB', '2', '0'); showSubMenu('QB', 'QBB', '2', '2')" onmouseout="setStyle_mall('QB', 'QBB', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBB');">
+                                        목재박스
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QB_QBC" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBC', '2', '0'); showSubMenu('QB', 'QBC', '2', '3')" onmouseout="setStyle_mall('QB', 'QBC', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBC');">
+                                        단프라박스
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QB_QBD" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBD', '2', '0'); showSubMenu('QB', 'QBD', '2', '4')" onmouseout="setStyle_mall('QB', 'QBD', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBD');">
+                                        종이박스
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QB_QBE" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBE', '2', '0'); showSubMenu('QB', 'QBE', '2', '5')" onmouseout="setStyle_mall('QB', 'QBE', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBE');">
+                                        팔레트
+                                    </td>
+                                </tr>
+                                
+        
+        
+    
+        
+                                <tr>
+                                    <td id="td_2depth_QB_QBF" class="left_menu_2depth_out" onmouseover="setStyle_mall('QB', 'QBF', '2', '0'); showSubMenu('QB', 'QBF', '2', '6')" onmouseout="setStyle_mall('QB', 'QBF', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QBF');">
+                                        필름및기타포장재
+                                    </td>
+                                </tr>
+                                
+        
+                            </tbody></table>
+                        </td>
+                        <td class="left_menu_2dep_bg_mr">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="17" height="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_bl">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_bc">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_br">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        
+        
+    
+        
+            <div id="QC" class="level2" style="position:absolute;z-index:1;display:none; left:0; top:0px; ">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td class="left_menu_2dep_bg_tl" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tc" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tr" height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_ml">
+                             <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="10" height="1">
+                        </td>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="left_menu_2depth">
+        
+                                <tbody><tr>
+                                    <td id="td_2depth_QC_QCA" class="left_menu_2depth_out" onmouseover="setStyle_mall('QC', 'QCA', '2', '0'); showSubMenu('QC', 'QCA', '2', '1')" onmouseout="setStyle_mall('QC', 'QCA', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QCA');">
+                                        강관
+                                    </td>
+                                </tr>
+                                
+        
+                            </tbody></table>
+                        </td>
+                        <td class="left_menu_2dep_bg_mr">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="17" height="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_bl">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_bc">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_br">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        
+        
+    
+        
+            <div id="QE" class="level2" style="position:absolute;z-index:1;display:none; left:0; top:0px; ">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td class="left_menu_2dep_bg_tl" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tc" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tr" height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_ml">
+                             <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="10" height="1">
+                        </td>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="left_menu_2depth">
+        
+                                <tbody><tr>
+                                    <td id="td_2depth_QE_QEA" class="left_menu_2depth_out" onmouseover="setStyle_mall('QE', 'QEA', '2', '0'); showSubMenu('QE', 'QEA', '2', '1')" onmouseout="setStyle_mall('QE', 'QEA', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QEA');">
+                                        계열사 통합구매
+                                    </td>
+                                </tr>
+                                
+        
+                            </tbody></table>
+                        </td>
+                        <td class="left_menu_2dep_bg_mr">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="17" height="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_bl">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_bc">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_br">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        
+        
+    
+        
+            <div id="QF" class="level2" style="position:absolute;z-index:1;display:none; left:0; top:0px; ">
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tbody><tr>
+                        <td class="left_menu_2dep_bg_tl" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tc" height="10">
+                        </td>
+                        <td class="left_menu_2dep_bg_tr" height="10">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_ml">
+                             <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="10" height="1">
+                        </td>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="left_menu_2depth">
+        
+                                <tbody><tr>
+                                    <td id="td_2depth_QF_QFA" class="left_menu_2depth_out" onmouseover="setStyle_mall('QF', 'QFA', '2', '0'); showSubMenu('QF', 'QFA', '2', '1')" onmouseout="setStyle_mall('QF', 'QFA', '2', '1'); wmStartOffTimer();" onclick="javascript:doListPageCall('QFA');">
+                                        임시_협력사의뢰품목
+                                    </td>
+                                </tr>
+                                
+        
+                            </tbody></table>
+                        </td>
+                        <td class="left_menu_2dep_bg_mr">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="17" height="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left_menu_2dep_bg_bl">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_bc">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                        <td class="left_menu_2dep_bg_br">
+                            <img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1">
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        
+        
+    
+
+    
+<script type="text/javascript"> 
+
+    var sub_menu_id = "";
+    var pct_cd      = "";
+
+    $(document).ready(function() {
+        if(pct_cd != "" && pct_cd.length > 1) {
+            sub_menu_id = pct_cd.substring(0, 2);
+        }
+        
+        // 초기 left 메뉴 선택되도록함. (2015.11.03 정정호 추가)
+        var obj = document.getElementById("sub_td_" + sub_menu_id);
+        if( obj != null && typeof(obj) != "undefined" ) {
+            obj.className="sub_left_1dep_over";
+        }
+    });
+
+    function InitViewMenu(i){
+    
+    	var obj = document.getElementById('sub_td_' + sub_menu_id);
+    	if( obj != null && typeof(obj) != 'undefined' ) {
+    		if( i == 0 ) obj.className="sub_left_1dep_over";
+    		else obj.className="sub_left_1dep";
+    	}
+    } 
+
+    var classId = new Array();
+    classId[0] = "level1";
+    classId[1] = "level2";
+    classId[2] = "level3";
+
+    var isOpen = false;
+    var pre_div_nm = '';
+
+    function setStyle_mall(parent_div, my_div, now_depth, mode){
+
+        var depth1Class = "";
+    	var depth2Class = "";
+    	
+    	if( mode == "0" ) {		//over
+    		depth1Class = 'sub_left_1dep_over';
+    		depth2Class = 'left_menu_2depth_over';
+    		
+    		InitViewMenu(1);
+    		
+    	} else {				//out
+    		depth1Class = 'sub_left_1dep';
+    		depth2Class = 'left_menu_2depth_out';
+    		
+    		InitViewMenu(0);
+    	}
+    	
+    	var depth1ID;
+    	var depth2ID;
+    	var depth3ID;
+        
+    	if( now_depth == 1 ){
+    		depth1ID = document.getElementById('sub_td_'+my_div);
+    	} else if( now_depth == 2 ){
+    		depth1ID = document.getElementById('sub_td_'+parent_div);
+    		depth2ID = document.getElementById('td_2depth_'+parent_div+'_'+my_div);
+    	} else {
+            
+    		depth1ID = document.getElementById('sub_td_'+parent_div.substring(0,2));
+    		depth2ID = document.getElementById('td_2depth_'+parent_div.substring(0,2)+'_'+parent_div);
+    		depth3ID = document.getElementById('td_3depth_'+parent_div+'_'+my_div);
+            
+    	}
+    		
+    	if( depth1ID != null && typeof(depth1ID) == 'object') depth1ID.className = depth1Class;
+    	if( depth2ID != null && typeof(depth2ID) == 'object') depth2ID.className = depth2Class;
+    	if( depth3ID != null && typeof(depth3ID) == 'object') depth3ID.className = depth2Class;
+    	
+    }
+
+    function hideAllSubMenu( classNm ){
+        
+    	var divs=document.getElementsByTagName("div"); 
+    	for(var i=0; i<divs.length; i++) 
+    	{ 
+    	    if(divs[i].className==classNm) 
+    	    { 
+    	        divs[i].style.display='none'; 
+    	    } 
+    	} 
+    }
+
+    var timerID     = null;
+    var timerOn     = false;
+    var timecount   = 100;
+    
+    function wmStartOffTimer() {
+      if (timerOn == false) {
+        timerID = setTimeout("hideAll()", timecount);
+        timerOn = true;
+      }
+    }
+
+    function stopOffTimer() {
+      if (timerOn) {
+        clearTimeout(timerID);
+        timerID = null;
+        timerOn = false;
+      }
+    }
+
+    function hideAll(){
+    	var divs=document.getElementsByTagName("div");
+    	for(var i=0; i<divs.length; i++) 
+    	{ 
+    		for( var j=1; j<classId.length; j++ ){
+    		    if(divs[i].className==classId[j]) 
+    		    { 
+    		        divs[i].style.display='none'; 
+    		    } 
+    		}
+    	} 
+    }
+
+    function showSubMenu( this_div, next_div, now_depth, menu_order ){
+
+    	stopOffTimer();	
+
+    	var this_obj   = document.getElementById(this_div);
+    	var next_obj   = document.getElementById(next_div);
+    	var div_top    = 182;
+    	var div_left   = 176;
+
+        if( pre_div_nm != next_div ) {
+
+    		if( now_depth == "1" ) {
+    			hideAllSubMenu( 'level2' );
+    			hideAllSubMenu( 'level3' );
+    		}
+    		else if( now_depth == "2" ) hideAllSubMenu( 'level3' );
+    	}
+        
+    	if( this_obj != null && typeof(this_obj) != 'undefined' ) {
+            div_left  = parseInt(this_obj.style.left) + 145;
+            div_top   = parseInt(this_obj.style.top)  + (parseInt(menu_order-1)) * 26 + 6;
+        }
+    	else {
+    		div_top = div_top + (parseInt(menu_order-1)) * 24;
+    		//div_left = 176;
+    	}
+    	
+    	if( next_obj != null && typeof(next_obj) != 'undefined' ) {
+    		next_obj.style.top 	      = div_top 	+ "px";
+    		next_obj.style.left       = div_left 	+ "px";		
+    		next_obj.style.display    = "";
+    	}
+    	
+    	pre_div_nm = next_div;
+    }
+    
+  //카탈로그 제품 상위 카탈로그 화면으로 이동 
+    function doMainPageCall(psPctCd) {
+      
+        formLeft.strPctCd.value = psPctCd;
+        document.formLeft.action = "/vmp/front/catalog/ca001/onLoad.do";
+        document.formLeft.submit(formLeft);
+    }
+    
+    //카탈로그 제품 하위 카탈로그 화면으로 이동 
+    function doListPageCall(psPctCd) {
+        formLeft.strPctCd.value = psPctCd;
+        document.formLeft.action = "/vmp/front/catalog/ca002/onLoad.do";
+        document.formLeft.submit(formLeft);
+    }
+    
+</script>
+                
+            </td>
+            <td width="785" valign="top">
+                <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tbody><tr>
+                        <td height="50" align="center">&nbsp;</td>    
+                    </tr>
+                    <tr>
+                        <td align="center" valign="top">
+                            <table width="520" border="0" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                                    <td height="10" colspan="3" valign="top">
+                                        <img src="/vmp/images/siteimg/kor/front/membership/img_login_01.gif" width="520" height="10">
+                                    </td>
+                                </tr>       
+                                <tr height="212">
+                                    <td width="12" valign="top" style="background:url(/vmp/images/siteimg/kor/front/membership/img_login_02.gif) no-repeat center top; width: 12px; height: 212px;">
+                                        
+                                    </td>
+                                    <td width="496" valign="top">
+                                        <table width="496" border="0" cellspacing="0" cellpadding="0">
+                                            <tbody><tr>
+                                                <td height="70" valign="top" style="background:url(/vmp/images/siteimg/kor/front/membership/img_login_05.gif) no-repeat center center; width: 496px; height: 70px;">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top">
+                                                    
+                                                    <form id="loginForm" name="loginForm" method="post" enctype="application/x-www-form-urlencoded">
+                                                        
+                                                        <input type="hidden" id="REQ_PARAM_CALLBACK_FUNCTION" name="REQ_PARAM_CALLBACK_FUNCTION" style="">
+                                                        
+                                                        <input type="hidden" id="REQ_PARAM_RETURN_URL" name="REQ_PARAM_RETURN_URL" value="/main.do" style="">
+                                                        
+                                                        <input type="hidden" name="REQ_PARAM_PROGRAM_URL" id="REQ_PARAM_PROGRAM_URL" value="/main.do" style="">
+                                                        <input type="hidden" name="csrf" value="" style="">               
+                                                        <table width="496" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody><tr height="139">
+                                                                <td width="247" valign="top">
+                                                                    <table width="247" border="0" cellpadding="0" cellspacing="0">
+                                                                        <tbody><tr height="30">
+                                                                            <td width="85">
+                                                                                <img id="logingTable_item_1" src="/vmp/images/siteimg/kor/front/membership/img_login_07.gif" width="85" height="30">
+                                                                            </td>
+                                                                            <td width="162" style="text-align:left;">
+                                                                                <input id="strUserId" name="strUserId" type="text" size="16" maxlength="10" tabindex="1" style="">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr height="30">
+                                                                            <td width="85">
+                                                                                <img id="logingTable_item_2" src="/vmp/images/siteimg/kor/front/membership/img_login_08.gif" width="85" height="30">
+                                                                            </td>
+                                                                            <td width="162" style="text-align:left;">
+                                                                                <input id="strPassWd" name="strPassWd" type="password" size="16" maxlength="20" tabindex="2" autocomplete="off" style="">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr height="30">
+                                                                            <td width="85">
+                                                                                <img style="display:none" id="logingTable_item_4" src="/vmp/images/siteimg/kor/front/membership/img_login_10.gif" width="85" height="30">
+                                                                            </td>
+                                                                            <td width="162" style="text-align:left;">
+                                                                                <input style="display: none;" id="strOTP" name="strOTP" type="text" size="16" maxlength="6 tabIndex=" 2"="" autocomplete="off">
+                                                                                <input id="strStep" name="strStep" type="hidden" value="0" style="">
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr height="20"><td>&nbsp;</td></tr>
+                                                                        <tr>
+                                                                            <td width="123" align="center">
+                                                                                <img id="btn_login" name="btn_login" src="/vmp/images/siteimg/kor/front/membership/btn_login.gif" width="91" height="43" border="0" style="cursor: pointer;">
+                                                                            </td>
+                                                                            <td width="124" align="left" id="logingTable_item_5">
+                                                                                <img id="btn_pwOver" name="btn_pwOver" src="/vmp/images/siteimg/kor/front/membership/btn_pwOver.gif" width="91" height="43" border="0" style="cursor: pointer;">
+                                                                            </td>
+                                                                            <td width="124" id="logingTable_item_6" style="display:none;">
+                                                                                <img id="btn_OTP" name="btn_pwOver" src="/vmp/images/siteimg/kor/front/membership/btn_login_OTP.gif" width="91" height="43" border="0" style="cursor: pointer;">
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody></table>
+                                                                </td>
+                                                                <td width="249">
+                                                                    <div style="width: 249px; height: 139px; display: table-cell; vertical-align: top:">
+                                                                        <img src="/vmp/images/siteimg/kor/front/membership/img_login_06.gif" style="max-width: 249px; max-height: 130px; height: auto; vertical-align: top;">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody></table>
+                                                    <input type="text" id="" name="" class="display_none" style=""></form>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                    </td>
+                                    <td width="12" valign="top" style="background:url(/vmp/images/siteimg/kor/front/membership/img_login_04.gif) no-repeat center top; width: 12px; height: 212px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="68" colspan="3" valign="top">
+                                        <img src="/vmp/images/siteimg/kor/front/membership/img_login_03.gif" width="520" height="68">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+            </td>
+            <td width="10">&nbsp;</td>
+        </tr>
+    </tbody></table>
+
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tbody><tr>
+    	<td height="50"><img src="/vmp/images/siteimg/kor/front/catalog/gost.gif" width="1" height="1"></td>
+    </tr>
+    <tr>  
+		<td class="footer_linebg">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tbody><tr>
+		        	<td width="205" align="center">
+		            	<img src="/vmp/images/siteimg/kor/common/img_banner_group.gif" alt="logo">
+		            </td>
+		            <td style="padding-right:20px;">
+						<table cellpadding="0" cellspacing="0" border="0">
+	                        <tbody><tr>
+	                            <td class="footer_text_add">위원회고시 제2000-1호에 따른 사업자등록번호&nbsp;:&nbsp; 101-81-09147&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;통신판매업 신고번호 : 026465<br>대표이사&nbsp;&nbsp;이원희&nbsp;&nbsp;&nbsp;&nbsp;주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀</td>
+	                        </tr>
+	                        <tr>
+	                            <td class="footer_text_copy">COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED</td>
+	                        </tr>
+	                    </tbody></table>
+					</td>
+					<td valign="top">
+		            	<table cellpadding="0" cellspacing="0" border="0">
+		                	<tbody><tr>
+	                            <td>
+	                                <!--
+                                    <a href="javascript:MM_openBrWindow('/vmp/common/popup/privacyPopup2.do','','width=550,height=532');">
+                                    -->
+                                    <a href="Page.html" onclick="window.open('/vmp/common/popup/privacyPopup2.do', '_blank', 'width=560, height=530, resizable=0'); return false;">
+                                        <img src="/vmp/images/siteimg/kor/front/catalog/new_main/footer_img_link01_new2.PNG" style=" height:19px; h" border="0" alt="개인정보 보안">
+                                    </a>
+                                </td>
+                                <td>
+                                    <img src="/vmp/images/siteimg/kor/front/catalog/new_main/footer_link_bar.gif">
+                                </td>
+	                            <td>
+                                    <a href="javascript:MM_openBrWindow('/vmp/common/popup/agreementPrintPopup.do','','scrollbars=yes,width=567,height=500');">
+                                        <img src="/vmp/images/siteimg/kor/front/catalog/new_main/footer_img_link02.gif" border="0" alt="이용약관">
+                                    </a>
+                                </td>
+	                            <td>
+                                    <img src="/vmp/images/siteimg/kor/front/catalog/new_main/footer_link_bar.gif">
+                                </td>
+                            	<td>
+                                    <a href="javascript:MM_openBrWindow('/vmp/common/popup/emailRefusePopup.do','','width=440,height=235');">
+                                        <img src="/vmp/images/siteimg/kor/front/catalog/new_main/footer_img_link03.gif" border="0" alt="이메일 무단수집거부">
+                                    </a>
+                                </td>
+	                        </tr>
+	                    </tbody></table>
+	                </td>
+	            </tr>
+        	</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+
+    <iframe name="hidden_iframe" id="hidden_iframe" title="숨겨진 프레임" src="about:blank" width="0" height="0" frameborder="0"></iframe>
+            
+
+
+</body></html>

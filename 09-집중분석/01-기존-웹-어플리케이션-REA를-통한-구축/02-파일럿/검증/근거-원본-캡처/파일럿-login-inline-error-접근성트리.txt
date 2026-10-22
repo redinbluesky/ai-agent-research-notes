@@ -1,0 +1,24 @@
+- banner:
+  - link "VAATZ 파일럿 (데모)":
+    - /url: /
+  - navigation "주요 메뉴":
+    - list:
+      - listitem:
+        - button "공지사항"
+      - listitem:
+        - button "자료실"
+      - listitem:
+        - button "마이페이지"
+- main:
+  - heading "로그인" [level=1]
+  - status: 이 화면은 데모입니다. 실제 인증을 수행하지 않습니다.
+  - text: 아이디
+  - textbox "아이디" [invalid]
+  - text: 최대 10자
+  - alert: 아이디를 입력하세요
+  - text: 비밀번호
+  - textbox "비밀번호" [invalid]
+  - text: 최대 20자
+  - alert: 비밀번호를 입력하세요
+  - button "로그인"
+- contentinfo: 이 화면은 원본 VAATZ를 답사한 파일럿 데모이며, 실제 업무 시스템과 연결되어 있지 않습니다.

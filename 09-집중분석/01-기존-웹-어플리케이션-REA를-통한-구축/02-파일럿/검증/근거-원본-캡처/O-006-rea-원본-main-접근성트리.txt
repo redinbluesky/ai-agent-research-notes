@@ -1,0 +1,158 @@
+- document:
+  - table:
+    - rowgroup:
+      - row "vaatz logo 로그인 회원가입 장바구니":
+        - cell "vaatz logo 로그인 회원가입 장바구니":
+          - table:
+            - rowgroup:
+              - row "vaatz logo 로그인 회원가입 장바구니":
+                - cell "vaatz logo 로그인 회원가입 장바구니":
+                  - table:
+                    - rowgroup:
+                      - row "vaatz logo 로그인 회원가입 장바구니":
+                        - cell "vaatz logo":
+                          - img "vaatz logo"
+                        - cell "로그인 회원가입 장바구니":
+                          - table:
+                            - rowgroup:
+                              - row "로그인 회원가입 장바구니":
+                                - cell "로그인":
+                                  - img "로그인"
+                                - cell "회원가입":
+                                  - link "회원가입":
+                                    - /url: /vmp/common/login/ma005/onLoad.do
+                                    - img "회원가입"
+                                - cell "장바구니":
+                                  - link "장바구니":
+                                    - /url: javascript:jsCallLoginPage();
+                                    - img "장바구니"
+                                - cell
+      - row:
+        - cell
+      - row "notice 로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+        - cell "notice 로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+          - table:
+            - rowgroup:
+              - row "notice 로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+                - cell:
+                  - img
+                - cell:
+                  - table:
+                    - rowgroup:
+                      - row:
+                        - cell:
+                          - table:
+                            - rowgroup:
+                              - row:
+                                - cell:
+                                  - link:
+                                    - /url: /vmp/front/catalog/ca001/onLoad.do
+                                    - img
+                                - cell:
+                                  - link:
+                                    - /url: /vmp/common/login/viewLogin.do
+                                    - img
+                                - cell:
+                                  - link:
+                                    - /url: javascript:jsLogistrans();
+                                    - img
+                                - cell:
+                                  - link:
+                                    - /url: /vmp/front/help/hp001/helpMain.do
+                                    - img
+                      - row:
+                        - cell:
+                          - table:
+                            - rowgroup:
+                              - row:
+                                - cell
+                                - cell
+                - cell:
+                  - img
+                - cell "notice 로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+                  - table:
+                    - rowgroup:
+                      - row "notice":
+                        - cell "notice":
+                          - img "notice"
+                      - row "로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+                        - cell "로그인OTP도입-구글인증기 2026.09.17 로그인OTP도입-로그인안내 2026.09.17 한진택배 신시스템 송장출력 및 배송추... 2024.06.04 Internet Explorer 서비... 2022.06.14 마켓플레이스 접속관련 확인중 2021.11.26":
+                          - table:
+                            - rowgroup:
+                              - row "로그인OTP도입-구글인증기 2026.09.17":
+                                - cell "로그인OTP도입-구글인증기":
+                                  - link "로그인OTP도입-구글인증기":
+                                    - /url: javascript:callFrontBbsView(9051);
+                                    - img
+                                    - text: 로그인OTP도입-구글인증기
+                                - cell "2026.09.17"
+                              - row "로그인OTP도입-로그인안내 2026.09.17":
+                                - cell "로그인OTP도입-로그인안내":
+                                  - link "로그인OTP도입-로그인안내":
+                                    - /url: javascript:callFrontBbsView(9050);
+                                    - img
+                                    - text: 로그인OTP도입-로그인안내
+                                - cell "2026.09.17"
+                              - row "한진택배 신시스템 송장출력 및 배송추... 2024.06.04":
+                                - cell "한진택배 신시스템 송장출력 및 배송추...":
+                                  - link "한진택배 신시스템 송장출력 및 배송추...":
+                                    - /url: javascript:callFrontBbsView(9044);
+                                    - img
+                                    - text: 한진택배 신시스템 송장출력 및 배송추...
+                                - cell "2024.06.04"
+                              - row "Internet Explorer 서비... 2022.06.14":
+                                - cell "Internet Explorer 서비...":
+                                  - link "Internet Explorer 서비...":
+                                    - /url: javascript:callFrontBbsView(9040);
+                                    - img
+                                    - text: Internet Explorer 서비...
+                                - cell "2022.06.14"
+                              - row "마켓플레이스 접속관련 확인중 2021.11.26":
+                                - cell "마켓플레이스 접속관련 확인중":
+                                  - link "마켓플레이스 접속관련 확인중":
+                                    - /url: javascript:callFrontBbsView(9036);
+                                    - img
+                                    - text: 마켓플레이스 접속관련 확인중
+                                - cell "2021.11.26"
+                - cell:
+                  - img
+  - table:
+    - rowgroup:
+      - row:
+        - cell:
+          - img
+      - 'row "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+        - 'cell "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+          - table:
+            - rowgroup:
+              - 'row "logo 위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED 개인정보 보안 이용약관 이메일 무단수집거부"':
+                - cell "logo":
+                  - img "logo"
+                - 'cell "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀 COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED"':
+                  - table:
+                    - rowgroup:
+                      - 'row "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀"':
+                        - 'cell "위원회고시 제2000-1호에 따른 사업자등록번호 : 101-81-09147 통신판매업 신고번호 : 026465 대표이사 이원희 주소 : (137-938) 서울특별시 서초구 헌릉로 12(양재동) HYUNDAI MOTOR GROUP Vaatz 운영팀"'
+                      - row "COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED":
+                        - cell "COPYRIGHT 2003 HYUNDAI MOTOR GROUP ALL RIGHTS RESERVED"
+                - cell "개인정보 보안 이용약관 이메일 무단수집거부":
+                  - table:
+                    - rowgroup:
+                      - row "개인정보 보안 이용약관 이메일 무단수집거부":
+                        - cell "개인정보 보안":
+                          - link "개인정보 보안":
+                            - /url: Page.html
+                            - img "개인정보 보안"
+                        - cell:
+                          - img
+                        - cell "이용약관":
+                          - link "이용약관":
+                            - /url: javascript:MM_openBrWindow('/vmp/common/popup/agreementPrintPopup.do','','scrollbars=yes,width=567,height=500');
+                            - img "이용약관"
+                        - cell:
+                          - img
+                        - cell "이메일 무단수집거부":
+                          - link "이메일 무단수집거부":
+                            - /url: javascript:MM_openBrWindow('/vmp/common/popup/emailRefusePopup.do','','width=440,height=235');
+                            - img "이메일 무단수집거부"
+  - iframe

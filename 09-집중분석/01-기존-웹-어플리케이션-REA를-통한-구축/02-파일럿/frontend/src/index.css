@@ -1,0 +1,106 @@
+:root {
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+  color: #1c1c1c;
+  background: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 24px;
+  max-width: 720px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 24px;
+  border-bottom: 1px solid #ddd;
+}
+
+.app-header nav ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.app-header .brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.app-header .demo-tag {
+  color: #b3541e;
+  font-weight: 500;
+}
+
+.login-entry {
+  margin-left: auto;
+  padding: 8px 16px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app-footer {
+  padding: 12px 24px;
+  border-top: 1px solid #ddd;
+  color: #555;
+  font-size: 14px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin-top: 16px;
+}
+
+.text-input {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.text-input input {
+  font: inherit;
+  padding: 8px;
+}
+
+.input-limit {
+  font-size: 12px;
+  color: #777;
+}
+
+.field-error {
+  margin: 0;
+  color: #b00020;
+  font-size: 14px;
+}
+
+.demo-notice {
+  margin: 8px 0;
+  padding: 8px 12px;
+  background: #fff7e6;
+  border: 1px solid #f0c36d;
+}
